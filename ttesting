@@ -1,0 +1,20 @@
+import numpy as np
+import pandas as pd
+import fastf1
+import matplotlib.pyplot as plt
+import streamlit as st
+
+
+
+year = 2024
+season = fastf1.get_event_schedule(year)
+events = season.get_event_by_round(2)
+race = events.get_session('R')
+race.load()
+drv = race.drivers
+print (race.drivers)
+teams = pd.unique(race.laps['Team'])
+drivers = pd.unique(race.laps['Driver'])
+print(teams)
+print(drivers)
+print(race)
