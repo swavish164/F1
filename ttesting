@@ -3,18 +3,12 @@ import pandas as pd
 import fastf1
 import matplotlib.pyplot as plt
 import streamlit as st
+import fastf1.plotting
+from cycler import cycler
 
+session = fastf1.get_session(2023, 6, 'R')
+session.load(telemetry=False, weather=False)
 
-
-year = 2024
-season = fastf1.get_event_schedule(year)
-events = season.get_event_by_round(2)
-race = events.get_session('R')
-race.load()
-drv = race.drivers
-print (race.drivers)
-teams = pd.unique(race.laps['Team'])
-drivers = pd.unique(race.laps['Driver'])
+teams = pd.unique(session.laps['Team'])
+teams = list(teams) + ['All']
 print(teams)
-print(drivers)
-print(race)
